@@ -1,0 +1,29 @@
+{
+    "name": "nodehttp",
+    "version": "1.0.0",
+    "description": "",
+    "main": "server.js",
+    "scripts": {
+        "start": "NODE_ENV=production node server",
+        "dev": "nodemon server"
+
+
+    },
+    "repository": {
+        "type": "git",
+        "url": "git+https://github.com/nuerailiainiwaer/quizz_api.git"
+    },
+    "author": "",
+    "license": "ISC",
+    "bugs": {
+        "url": "https://github.com/nuerailiainiwaer/quizz_api/issues"
+    },
+    "homepage": "https://github.com/nuerailiainiwaer/quizz_api#readme",
+    "devDependencies": {
+        "nodemon": "^2.0.6"
+    },
+    "dependencies": {
+        "dotenv": "^8.2.0",
+        "express": "^4.17.1"
+    }
+}
