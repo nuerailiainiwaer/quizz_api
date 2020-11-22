@@ -2,6 +2,7 @@ const express = require('express');
 const dotenv = require('dotenv')
 const morgan = require('morgan')
 const colors = require('colors');
+const errhandler = require('./middleware/error')
 
 const connectDB = require('./config/db')
 
@@ -19,6 +20,11 @@ const types = require('./routes/types');
 const connnectDB = require('./config/db');
 
 const app = express();
+
+///Body parser
+app.use(express.json())
+
+
 // Dev logging middleware
 if (process.env.NODE_ENV === 'development') {
     app.use(morgan('dev'))
@@ -28,6 +34,7 @@ if (process.env.NODE_ENV === 'development') {
 
 //Mount routers
 app.use('/api/v1/types', types);
+app.use(errhandler);
 
 
 // Route
