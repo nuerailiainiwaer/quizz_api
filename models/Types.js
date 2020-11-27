@@ -1,5 +1,6 @@
 const mongoose = require('mongoose');
-const BootcampScheme = new mongoose.Schema({
+const slugify = require('slugify')
+const TypecampScheme = new mongoose.Schema({
     name: {
         type: String,
         required: [true, "please add a name"],
@@ -7,14 +8,26 @@ const BootcampScheme = new mongoose.Schema({
         maxlength: [50, 'Name cannot be more than 50 character']
 
     },
-    // slug: String,
-
+    slug: String,
     description: {
         type: String,
         required: [true, 'Please add a description!'],
         maxlength: [500, 'Name cannot be more than 50 character']
+    },
+    createdAt: {
+        type: Date,
+        default: Date.now
     }
 
 })
 
-module.exports = mongoose.model('Types', BootcampScheme)
+// Create type sluf from the name
+TypecampScheme.pre('save', function() {
+    this.slug = slugify(this.name, {
+        lower: true
+    })
+    next();
+
+})
+
+module.exports = mongoose.model('Types', TypecampScheme)

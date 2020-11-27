@@ -1,102 +1,126 @@
 const Type = require('../models/Types');
+const ErrorResponse = require('../utiles/errorResponse')
+const asyncHandler = require('../middleware/async');
+
+
 //@des Get all types
 //@route Get /api/v1/types
 //@access public
-exports.getTypes = async(req, res, next) => {
-    try {
-        const types = await Type.find();
-        res.status(200).json({ success: true, counte: types.length, data: types })
+exports.getTypes = asyncHandler(async(req, res, next) => {
+    let query;
+    //copy req.query
+    const reqQuery = {...req.query };
 
-    } catch {
-        res.status(200).json({
-            success: false
-        })
+    //Fields to exculde
+    const removeFields = ['select', 'sort', 'page', 'limit'];
+    // Loop over removeFields and delete them from reqQuery
+    removeFields.forEach(param => delete reqQuery[param]);
+
+    //Create query string
+    let querStr = JSON.stringify(reqQuery);
+
+    //loop over remove 
+
+    // Create operators
+    querStr = querStr.replace(/\b(gt|gte|lt|lte|in)\b/g, match => `$${match}`);
+
+    //Finding resources
+    query = Type.find(JSON.parse(querStr))
+
+    //selec fields
+    if (req.query.select) {
+        const fileds = req.query.select.split(',').join(' ')
+        query = query.select(fileds)
+    }
+    //sort
+    if (req.query.sort) {
+        const sortBy = req.query.sort.split(',').join(' ');
+        query = query.sort(sortBy)
+    } else {
+        query = query.sort('-createdAt')
 
     }
+    ///pagination
+    const page = parseInt(req.query.page, 10) || 1;
+    const limit = parseInt(req.query.limit, 10) || 25;
+    const startIndex = (page - 1) * limit;
+    const endIndex = page * limit;
+    const total = await Type.countDocuments();
 
-}
+    query = query.skip(startIndex).limit(limit)
+
+    // excuting query
+    const types = await query;
+
+    //pagination result
+    const pagination = {};
+    if (endIndex < total) {
+        pagination.next = {
+            page: page + 1,
+            limit
+        }
+    }
+
+    if (startIndex > 0) {
+        pagination.prev = {
+            page: page - 1,
+            limit
+        }
+    }
+
+
+    res.status(200).json({ success: true, counte: types.length, pagination: pagination, data: types })
+
+});
 
 //@des Get single types
 //@route Get /api/v1/types/:id
 //@access public
-exports.getType = async(req, res, next) => {
-    try {
-        const types = await Type.findById(req.params.id);
+exports.getType = asyncHandler(async(req, res, next) => {
 
-        //Correccctly formated but does not exist
-        if (!types) {
-            return res.status(400).json({
-                success: false
-            })
-        }
-        res.status(200).json({ success: true, data: types })
-    } catch (err) {
-        next(err);
-        // res.status(400).json({
-        //     success: false
-        // })
-
+    const types = await Type.findById(req.params.id);
+    //Correccctly formated but does not exist
+    if (!types) {
+        return next(new ErrorResponse(`Type is not found with id of ${req.params.id} `, 404));
     }
-}
+    res.status(200).json({ success: true, data: types })
+
+});
 
 //@des create new type
 //@route POST /api/v1/types
 //@access public
-exports.createType = async(req, res, next) => {
-
-    try {
-        const type = await Type.create(req.body);
-        console.log(type)
-        res.status(201).json({
-            success: true,
-            data: type
-        })
-    } catch (err) {
-        res.status(400).json({
-            success: false
-        })
-    }
-    // console.log(req.body)
-    // res.status(400).json({ success: true, msg: 'Create new type' })
-
-}
+exports.createType = asyncHandler(async(req, res, next) => {
+    const type = await Type.create(req.body);
+    res.status(201).json({
+        success: true,
+        data: type
+    })
+});
 
 //@des update type
 //@route PUT /api/v1/types/:id
 //@access public
-exports.updateType = async(req, res, next) => {
-    try {
-        const types = await Type.findByIdAndUpdate(req.params.id, req.body, {
-            new: true,
-            runValidators: true
-        });
-        if (!types) {
-            return res.status(400).json({
-                success: false
-            })
-        }
-        res.status(200).json({ success: true, data: types })
-    } catch {
-        res.status(400).json({ success: false })
+exports.updateType = asyncHandler(async(req, res, next) => {
+    const types = await Type.findByIdAndUpdate(req.params.id, req.body, {
+        new: true,
+        runValidators: true
+    });
+    if (!types) {
+        return next(new ErrorResponse(`Type is not found with id of ${req.params.id} `, 404));
     }
+    res.status(200).json({ success: true, data: types })
 
-
-}
+});
 
 //@des delete type
 //@route delete /api/v1/types/:id
 //@access public
-exports.deleteType = async(req, res, next) => {
-    try {
-        const types = await Type.findByIdAndDelete(req.params.id);
-        if (!types) {
-            return res.status(400).json({
-                success: false
-            })
-        }
-        res.status(200).json({ success: true, data: {} })
-    } catch {
-        res.status(400).json({ success: false })
+exports.deleteType = asyncHandler(async(req, res, next) => {
+    const types = await Type.findByIdAndDelete(req.params.id);
+    if (!types) {
+        return next(new ErrorResponse(`Type is not found with id of ${req.params.id} `, 404));
     }
+    res.status(200).json({ success: true, data: {} })
 
-}
+});

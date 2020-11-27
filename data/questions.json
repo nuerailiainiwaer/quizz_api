@@ -1,0 +1,219 @@
+[{
+        "_id": "5d713995b721c3bb38c1f5d5",
+        "ques": "The University of Waterloo does NOT have a building of this name?",
+        "A": "B.C. Matthews Hall",
+        "B": "B.C. Matthews Hall",
+        "C": "B.C. Matthews Hall",
+        "D": "B.C. Matthews Hall",
+        "anS": "A",
+        "photo": "nurili",
+        "type": "5d713995b721c3bb38c1f5d4"
+
+    },
+    {
+        "_id": "5d713995b721c3bb38c1f5d6",
+        "ques": "The highest correlation of IQ scores between family members has been found for",
+        "A": "identical twins reared apart",
+        "B": "identical twins reared together",
+        "C": "fraternal twins reared together",
+        "D": "fraternal twins reared apart",
+        "anS": "B",
+        "photo": "nurili",
+        "type": "5d713995b721c3bb38c1f5d4"
+
+    },
+    {
+        "_id": "5d713995b721c3bb38c1f5d7",
+        "ques": " variable can be any factor, other than the variable being manipulated, in the experiment that might affect the dependent variable.",
+        "A": "interval",
+        "B": "correlational",
+        "C": "independent",
+        "D": "confounding",
+        "anS": "C",
+        "photo": "nurili",
+        "type": "5d713995b721c3bb38c1f5d3"
+
+    },
+    {
+        "_id": "5d713995b721c3bb38c1f5d8",
+        "ques": " How many blue stripes are there on the U.S. flag",
+        "A": "6",
+        "B": "7",
+        "C": "13",
+        "D": "0",
+        "anS": "D",
+        "photo": "nurili",
+        "type": "5d713995b721c3bb38c1f5d3"
+
+    },
+    {
+        "_id": "5d713995b721c3bb38c1f5d9",
+        "ques": " Which one of these characters is not friends with Harry Potter?",
+        "A": "Ron Weasley",
+        "B": "Neville Longbottom",
+        "C": "Draco Malfoy",
+        "D": "Hermione Granger",
+        "anS": "C",
+        "photo": "nurili",
+        "type": "5d713995b721c3bb38c1f5d2"
+
+    },
+    {
+        "_id": "5d713995b721c3bb38c1f510",
+        "ques": "What is the color of Donald Duck’s bowtie?",
+        "A": "Red",
+        "B": "Yellow",
+        "C": "Blue",
+        "D": "White",
+        "anS": "A",
+        "photo": "nurili",
+        "type": "5d713995b721c3bb38c1f5d2"
+
+    },
+    {
+        "_id": "5d713995b721c3bb38c1f511",
+        "ques": "What is the color of Donald Duck’s bowtie?",
+        "A": "Red",
+        "B": "Yellow",
+        "C": "Blue",
+        "D": "White",
+        "anS": "A",
+        "photo": "nurili",
+        "type": "5d713995b721c3bb38c1f5d2"
+
+    },
+    {
+        "_id": "5d713995b721c3bb38c1f512",
+        "ques": "What was the name of the band Lionel Richie was a part of?",
+        "A": "King Harvest",
+        "B": "Spectrums",
+        "C": "Commodores",
+        "D": "The Marshall Tucker Band",
+        "anS": "C",
+        "photo": "nurili",
+        "type": "5d713995b721c3bb38c1f5d1"
+
+    },
+    {
+        "_id": "5d713995b721c3bb38c1f513",
+        "ques": "Which country held the 2016 Summer Olympics?",
+        "A": "China",
+        "B": "Ireland",
+        "C": "Brazil",
+        "D": "Italy",
+        "anS": "C",
+        "photo": "nurili",
+        "type": "5d713995b721c3bb38c1f5d1"
+
+    },
+    {
+        "_id": "5d713995b721c3bb38c1f514",
+        "ques": "Which animal does not appear in the Chinese zodiac?",
+        "A": "Dragon",
+        "B": "Rabbit",
+        "C": "Dog",
+        "D": "Hummingbird",
+        "anS": "D",
+        "photo": "nurili",
+        "type": "5d713995b721c3bb38c1f5d0"
+
+    },
+    {
+        "_id": "5d713995b721c3bb38c1f515",
+        "ques": "Which country held the 2016 Summer Olympics?",
+        "A": "China",
+        "B": "Ireland",
+        "C": "Brazil",
+        "D": "Italy",
+        "anS": "C",
+        "photo": "nurili",
+        "type": "5d713995b721c3bb38c1f5d0"
+
+    },
+    {
+        "_id": "5d713995b721c3bb38c1f516",
+        "ques": "Which planet is the hottest?",
+        "A": "Venus",
+        "B": "Saturn",
+        "C": "Mercury",
+        "D": "Mars",
+        "anS": "A",
+        "photo": "nurili",
+        "type": "5d713995b721c3bb38c1f5d0"
+
+    },
+    {
+        "_id": "5d713995b721c3bb38c1f517",
+        "ques": "Who was the only U.S. President to resign?",
+        "A": "Herbert Hoover",
+        "B": "Richard Nixon",
+        "C": "George W. Bush",
+        "D": "Barack Obama",
+        "anS": "B",
+        "photo": "nurili",
+        "type": "5d713995b721c3bb38c1f5d0"
+
+    },
+    {
+        "_id": "5d713995b721c3bb38c1f518",
+        "ques": "What does the “D” in “D-Day” stand for?",
+        "A": "Dooms",
+        "B": "Dark",
+        "C": "Denmark",
+        "D": "Dunkirk",
+        "anS": "D",
+        "photo": "nurili",
+        "type": "5d713995b721c3bb38c1f5d1"
+
+    },
+
+    {
+        "_id": "kjhkl23hj4kl3hj4klh14",
+        "ques": "According to Forrest Gump, “life was like…”",
+        "A": "A bag of lemons",
+        "B": "A handful of roses",
+        "C": "A lollipop",
+        "D": "A box of chocolates",
+        "anS": "D",
+        "photo": "nurili",
+        "type": "5d713995b721c3bb38c1f5d0"
+
+    },
+
+    {
+        "_id": "kjhkl23hj4kl3hj4klh15",
+        "ques": "Linda and Bob from Bob’s Burgers have 3 kids. Which one of these characters is not one of them?",
+        "A": "Louise",
+        "B": "Gene",
+        "C": " Jimmy",
+        "D": "Tina",
+        "anS": "C",
+        "photo": "nurili",
+        "type": "5d713995b721c3bb38c1f5d4"
+
+    },
+    {
+        "_id": "kjhkl23hj4kl3hj4klh16",
+        "ques": "The British band One Direction (rip) was made up of Harry, Louis, Niall, Zayn, and…",
+        "A": "Paul",
+        "B": "Callum",
+        "C": " Jimmy",
+        "D": "Tina",
+        "anS": "C",
+        "photo": "nurili",
+        "type": "5d713995b721c3bb38c1f5d3"
+
+    },
+    {
+        "_id": "kjhkl23hj4kl3hj4klh17",
+        "ques": "What is the rarest blood type?",
+        "A": "O",
+        "B": "A",
+        "C": "B",
+        "D": "AB-Negative",
+        "anS": "D",
+        "photo": "nurili",
+        "type": "5d713995b721c3bb38c1f5d2"
+
+    }
+]
