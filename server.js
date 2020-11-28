@@ -17,7 +17,8 @@ connectDB();
 
 //Route files 
 const types = require('./routes/types');
-const connnectDB = require('./config/db');
+const questions = require('./routes/questions');
+
 
 const app = express();
 
@@ -34,6 +35,8 @@ if (process.env.NODE_ENV === 'development') {
 
 //Mount routers
 app.use('/api/v1/types', types);
+app.use('/api/v1/questions', questions);
+
 app.use(errhandler);
 
 

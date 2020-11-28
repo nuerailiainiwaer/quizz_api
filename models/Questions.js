@@ -20,10 +20,6 @@ const QuestionSchema = new monngoose.Schema({
         type: String,
         required: [true, 'Please add answer quesD']
     },
-    quesD: {
-        type: String,
-        required: [true, 'Please add answer quesD']
-    },
     anS: {
         type: String,
         required: [true, 'Please add answer to question!'],
