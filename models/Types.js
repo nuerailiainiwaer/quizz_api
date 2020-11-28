@@ -19,7 +19,33 @@ const TypecampScheme = new mongoose.Schema({
         default: Date.now
     }
 
+}, {
+    toJSON: { virtuals: true },
+    toObject: {
+        virtuals: true
+    }
+
+});
+// Cascade delete questions when a types is dleted
+TypecampScheme.pre('remove', async function(next) {
+    await this.model('Questions').deleteMany({
+        type: this._id
+    });
+    next();
 })
+
+
+
+//Reverse populate with virtuals
+TypecampScheme.virtual('quesstions', {
+    //question model
+    ref: 'Questions',
+    localField: "_id",
+    //type in course model
+    foreignField: 'type',
+    justOne: false
+})
+
 
 // Create type sluf from the name
 TypecampScheme.pre('save', function() {

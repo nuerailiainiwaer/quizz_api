@@ -24,8 +24,8 @@ exports.getTypes = asyncHandler(async(req, res, next) => {
     // Create operators
     querStr = querStr.replace(/\b(gt|gte|lt|lte|in)\b/g, match => `$${match}`);
 
-    //Finding resources
-    query = Type.find(JSON.parse(querStr))
+    //Finding resources// virtual
+    query = Type.find(JSON.parse(querStr)).populate('quesstions')
 
     //selec fields
     if (req.query.select) {
@@ -117,10 +117,11 @@ exports.updateType = asyncHandler(async(req, res, next) => {
 //@route delete /api/v1/types/:id
 //@access public
 exports.deleteType = asyncHandler(async(req, res, next) => {
-    const types = await Type.findByIdAndDelete(req.params.id);
+    const types = await Type.findById(req.params.id);
     if (!types) {
         return next(new ErrorResponse(`Type is not found with id of ${req.params.id} `, 404));
     }
+    types.remove();
     res.status(200).json({ success: true, data: {} })
 
 });
