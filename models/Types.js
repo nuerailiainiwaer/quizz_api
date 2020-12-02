@@ -17,7 +17,16 @@ const TypecampScheme = new mongoose.Schema({
     createdAt: {
         type: Date,
         default: Date.now
-    }
+    },
+    // ///can delete
+    // user: {
+    //     type: mongoose.Schema.ObjectId,
+    //     ref: "User",
+    //     required: true
+
+
+    // }
+    // ///can delete
 
 }, {
     toJSON: { virtuals: true },

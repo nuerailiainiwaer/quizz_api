@@ -12,29 +12,32 @@ const path = require('path');
 //@access public
 
 exports.getQuestions = asyncHandler(async(req, res, next) => {
-    let query
-
-
     if (req.params.typesID) {
-        console.log('man')
-        query = Question.find({
+        const quesions = await Question.find({
             type: req.params.typesID
+        })
+
+        return res.status(200).json({
+            success: true,
+            count: quesions.length,
+            data: courses
         })
     } else {
         //by adding populate('type') we populate  alllll the type
         // sometimes we do not need to add all of types so lets see below
-        query = Question.find().populate({
-            path: "type",
-            select: "name"
-        });
+        // query = Question.find().populate({
+        //     path: "type",
+        //     select: "name"
+        // });
+        res.status(200).json(res.advancedResults)
 
     }
-    const courses = await query;
-    res.status(200).json({
-        success: true,
-        count: courses.length,
-        data: courses
-    })
+    // const courses = await query;
+    // res.status(200).json({
+    //     success: true,
+    //     count: courses.length,
+    //     data: courses
+    // })
 
 })
 

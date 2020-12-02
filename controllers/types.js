@@ -7,69 +7,7 @@ const asyncHandler = require('../middleware/async');
 //@route Get /api/v1/types
 //@access public
 exports.getTypes = asyncHandler(async(req, res, next) => {
-    let query;
-    //copy req.query
-    const reqQuery = {...req.query };
-
-    //Fields to exculde
-    const removeFields = ['select', 'sort', 'page', 'limit'];
-    // Loop over removeFields and delete them from reqQuery
-    removeFields.forEach(param => delete reqQuery[param]);
-
-    //Create query string
-    let querStr = JSON.stringify(reqQuery);
-
-    //loop over remove 
-
-    // Create operators
-    querStr = querStr.replace(/\b(gt|gte|lt|lte|in)\b/g, match => `$${match}`);
-
-    //Finding resources// virtual
-    query = Type.find(JSON.parse(querStr)).populate('quesstions')
-
-    //selec fields
-    if (req.query.select) {
-        const fileds = req.query.select.split(',').join(' ')
-        query = query.select(fileds)
-    }
-    //sort
-    if (req.query.sort) {
-        const sortBy = req.query.sort.split(',').join(' ');
-        query = query.sort(sortBy)
-    } else {
-        query = query.sort('-createdAt')
-
-    }
-    ///pagination
-    const page = parseInt(req.query.page, 10) || 1;
-    const limit = parseInt(req.query.limit, 10) || 25;
-    const startIndex = (page - 1) * limit;
-    const endIndex = page * limit;
-    const total = await Type.countDocuments();
-
-    query = query.skip(startIndex).limit(limit)
-
-    // excuting query
-    const types = await query;
-
-    //pagination result
-    const pagination = {};
-    if (endIndex < total) {
-        pagination.next = {
-            page: page + 1,
-            limit
-        }
-    }
-
-    if (startIndex > 0) {
-        pagination.prev = {
-            page: page - 1,
-            limit
-        }
-    }
-
-
-    res.status(200).json({ success: true, counte: types.length, pagination: pagination, data: types })
+    res.status(200).json(res.advancedResults)
 
 });
 
@@ -91,6 +29,19 @@ exports.getType = asyncHandler(async(req, res, next) => {
 //@route POST /api/v1/types
 //@access public
 exports.createType = asyncHandler(async(req, res, next) => {
+    // ///can delete
+    // // add user to req.body
+    // req.body.user = req.user.id;
+    // //chekck for the publised bootcamp// this finds all the bootcamp by this user
+    // const types = await Type.findOne({ user: req.user.id })
+    //     // if the user is not an admin, they can only add one bootcamp
+    // if (types && req.user.role !== 'publisher') {
+    //     return next(new ErrorResponse(`The user with ID ${req.user.id} has already publised a type`))
+
+    // }
+    // ///can delete
+
+
     const type = await Type.create(req.body);
     res.status(201).json({
         success: true,
