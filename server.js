@@ -22,6 +22,7 @@ const questions = require('./routes/questions');
 const auth = require('./routes/auth');
 const feedback = require('./routes/feedback');
 const score = require('./routes/score');
+const users = require('./routes/user');
 
 
 const app = express();
@@ -50,7 +51,8 @@ app.use('/api/v1/types', types);
 app.use('/api/v1/questions', questions);
 app.use('/api/v1/auth', auth);
 app.use('/api/v1/feedback', feedback);
-// app.use('/api/v1/score', score);
+app.use('/api/v1/score', score);
+app.use('/api/v1/users', users);
 
 app.use(errhandler);
 

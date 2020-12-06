@@ -17,7 +17,8 @@ exports.getTypes = asyncHandler(async(req, res, next) => {
 exports.getType = asyncHandler(async(req, res, next) => {
 
     const types = await Type.findById(req.params.id);
-    //Correccctly formated but does not exist
+    console.log(types)
+        //Correccctly formated but does not exist
     if (!types) {
         return next(new ErrorResponse(`Type is not found with id of ${req.params.id} `, 404));
     }

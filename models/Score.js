@@ -1,6 +1,6 @@
 const mongoose = require('mongoose');
 const slugify = require('slugify')
-const TypecampScheme = new mongoose.Schema({
+const ScoreScheme = new mongoose.Schema({
     Score: {
         type: Number
     },
@@ -14,3 +14,6 @@ const TypecampScheme = new mongoose.Schema({
         required: true
     }
 })
+
+
+module.exports = mongoose.model('Score', ScoreScheme)

@@ -27,7 +27,7 @@ const types = JSON.parse(fs.readFileSync(`${__dirname}/data/types.json`, 'utf-8'
 const questions = JSON.parse(fs.readFileSync(`${__dirname}/data/questions.json`, 'utf-8'));
 const users = JSON.parse(fs.readFileSync(`${__dirname}/data/user.json`, 'utf-8'));
 const feedback = JSON.parse(fs.readFileSync(`${__dirname}/data/feedback.json`, 'utf-8'));
-// const score = JSON.parse(fs.readFileSync(`${__dirname}/data/score.json`, 'utf-8'));
+const score = JSON.parse(fs.readFileSync(`${__dirname}/data/score.json`, 'utf-8'));
 
 //Import into DB
 const importDate = async() => {
@@ -36,7 +36,7 @@ const importDate = async() => {
         await Questions.create(questions);
         await User.create(users);
         await Feedback.create(feedback);
-        // await Score.create(score)
+        await Score.create(score)
         console.log('Data Imported...'.green.inverse);
         process.exit()
     } catch (err) {
@@ -52,7 +52,7 @@ const deleteData = async() => {
         await Questions.deleteMany();
         await User.deleteMany();
         await Feedback.deleteMany();
-        // await Score.deleteMany();
+        await Score.deleteMany();
         console.log('Data destroyed...'.red.inverse);
         process.exit();
     } catch (err) {
