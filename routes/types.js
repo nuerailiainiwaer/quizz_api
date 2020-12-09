@@ -17,7 +17,15 @@ const { protect, authorize } = require('../middleware/auth')
 //Re-route into other resource routers
 router.use('/:typesID/questions', questionRouter)
 
-router.route('/').get(advancedResults(Types, 'quesstions'), getTypes).post(protect, authorize("publisher"), createType);
-router.route('/:id').get(getType).delete(protect, authorize("publisher"), deleteType).put(protect, authorize("publisher"), updateType)
+router.route('/')
+    .get(advancedResults(Types, {
+        path: "quesstions",
+        select: " ques"
+    }), getTypes)
+    .post(protect, authorize("publisher"), createType);
+router.route('/:id')
+    .get(getType)
+    .delete(protect, authorize("publisher"), deleteType)
+    .put(protect, authorize("publisher"), updateType)
 
 module.exports = router;
