@@ -20,7 +20,7 @@ exports.getQuestions = asyncHandler(async(req, res, next) => {
         return res.status(200).json({
             success: true,
             count: quesions.length,
-            data: courses
+            data: quesions
         })
     } else {
         //by adding populate('type') we populate  alllll the type

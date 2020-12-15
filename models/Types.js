@@ -18,15 +18,6 @@ const TypecampScheme = new mongoose.Schema({
         type: Date,
         default: Date.now
     },
-    // ///can delete
-    // user: {
-    //     type: mongoose.Schema.ObjectId,
-    //     ref: "User",
-    //     required: true
-
-
-    // }
-    // ///can delete
 
 }, {
     toJSON: { virtuals: true },
@@ -54,6 +45,25 @@ TypecampScheme.virtual('quesstions', {
     foreignField: 'type',
     justOne: false
 })
+
+TypecampScheme.virtual('quesId', {
+    //question model
+    ref: 'Questions',
+    localField: "_id",
+    //type in course model
+    foreignField: 'type',
+    justOne: false
+})
+
+// //Reverse populate with virtuals
+// TypecampScheme.virtual('quesstion', {
+//     //question model
+//     ref: 'Questions',
+//     localField: "_id",
+//     //type in course model
+//     foreignField: 'type',
+//     justOne: false
+// })
 
 
 // Create type sluf from the name
