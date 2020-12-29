@@ -138,7 +138,6 @@ exports.saveQuestion = asyncHandler(async(req, res, next) => {
 
 
         const fieldsToUpdate = {
-
             saved: req.body.saved
         };
         const questionme = await Question.findByIdAndUpdate(req.params.id, fieldsToUpdate, {
