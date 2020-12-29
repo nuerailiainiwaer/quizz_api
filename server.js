@@ -6,6 +6,7 @@ const colors = require('colors');
 const fileUpload = require('express-fileupload')
 const cookieparser = require('cookie-parser')
 const errhandler = require('./middleware/error')
+const cors = require('cors')
 
 const connectDB = require('./config/db')
 
@@ -27,6 +28,7 @@ const savedQuestion = require('./routes/savedQues');
 
 
 const app = express();
+app.use(cors())
 
 ///Body parser
 app.use(express.json())

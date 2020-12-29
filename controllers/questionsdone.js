@@ -4,15 +4,20 @@ const asyncHandler = require('../middleware/async');
 const Feedback = require('../models/Feedback');
 const User = require('../models/User');
 const SavedQues = require('../models/SavedQues')
+const QuestionDone = require('../models/Questionsdone')
 
-//@des Get all saved questions
-//@route Get /api/v1/savedquestion
+
+//@des Get all done question
+//@route Get /api/v1/donequestion
 //@access public
-exports.getSavedQuestions = asyncHandler(async(req, res, next) => {
+exports.getDoneQuestions = asyncHandler(async(req, res, next) => {
     if (req.params.userID) {
-        const savedQuesions = await SavedQues.find({
+        const savedQuesions = await QuestionDone.find({
             userID: req.params.userID
         })
+        console.log('anwar')
+
+
         return res.status(200).json({
             success: true,
             count: savedQuesions.length,
@@ -41,10 +46,11 @@ exports.getSavedQuestions = asyncHandler(async(req, res, next) => {
 
 })
 
+
 // @des create savedQuesation
 // @route POST /api/v1/questions/:quesID/saved
 // @access private
-exports.savedQuestions = asyncHandler(async(req, res, next) => {
+exports.savedDoneQuestions = asyncHandler(async(req, res, next) => {
     req.body.userID = req.user._id;
     req.body.quesID = req.params.quesID;
 
@@ -55,7 +61,6 @@ exports.savedQuestions = asyncHandler(async(req, res, next) => {
         data: savedQues
     })
 })
-
 
 // @des delete savedQuesation
 // @route delete /api/v1/savedquestion/:id
@@ -73,26 +78,3 @@ exports.deleteSavedQuestions = asyncHandler(async(req, res, next) => {
     res.status(200).json({ success: true, data: {} })
 
 });
-
-
-// //@des Get all savedQuestions for a user
-// //@route Get /:userID/question
-// //@access public
-
-// exports.getSavedQuestionsForAUser = asyncHandler(async(req, res, next) => {
-
-//     const savedQuesions = await SavedQues.find({
-//         userID: req.params.userID
-//     })
-//     console.log('anwar')
-
-
-//     return res.status(200).json({
-//         success: true,
-//         count: savedQuesions.length,
-//         data: savedQuesions
-//     })
-
-
-
-// })

@@ -10,19 +10,29 @@ const crypto = require("crypto")
 //@access public
 
 exports.register = asyncHandler(async(req, res, next) => {
-    const { name, email, password, role } = req.body;
+    const { name, email, password, role, authCode, auth } = req.body;
+    // req.body.authCode = Math.floor(Math.random() * 90000) + 10000;
     //create our user
     const user = await User.create({
         name,
         email,
         password,
-        role
+        role,
+        authCode,
+        auth
     });
+
+    // req.body.authCode = Math.floor(Math.random() * 90000) + 10000;
+    // console.log(user)
     //create token 
     //method is lower case so it should be user, statick is uppercase
     // const token = user.getSIgnedJwtTOken();
     // res.status(200).json({ sucess: true, token: token })
     sendTokenResponse(user, 200, res)
+        // res.status(200).json({
+        //     success: true,
+        //     data: user
+        // })
 })
 
 
@@ -55,6 +65,27 @@ exports.login = asyncHandler(async(req, res, next) => {
     // res.status(200).json({ sucess: true, token: token })
     sendTokenResponse(user, 200, res)
 })
+
+// @desc      Update and making auth equal to false
+// @route     PUT /api/v1/auth/makingauthtrue
+// @access    Private
+exports.makingauthtrue = asyncHandler(async(req, res, next) => {
+    const fieldsToUpdate = {
+        auth: req.body.auth
+    };
+    const user = await User.findByIdAndUpdate(req.user.id, fieldsToUpdate, {
+        new: true,
+        runValidators: true,
+    });
+    res.status(200).json({
+        success: true,
+        data: user,
+    });
+
+})
+
+
+
 
 
 
@@ -134,8 +165,10 @@ exports.resetPassword = asyncHandler(async(req, res, next) => {
 })
 
 //get token from model, create cookie and send response
-const sendTokenResponse = (user, statusCode, res) => {
+const sendTokenResponse = (user, statusCode, res, code) => {
     const token = user.getSIgnedJwtTOken();
+    const authCode = user.authCode;
+    const auth = user.auth;
     //only accesed by client site script
 
     const options = {
@@ -148,6 +181,8 @@ const sendTokenResponse = (user, statusCode, res) => {
     }
     res.status(statusCode).cookie('token', token, options)
         .json({
+            code: authCode,
+            auth: auth,
             sucess: true,
             token
         })

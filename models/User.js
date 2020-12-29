@@ -5,7 +5,8 @@ const crypto = require('crypto')
 const UserSchema = new mongoose.Schema({
     name: {
         type: String,
-        required: [true, 'Please add a name']
+        required: [true, 'Please add a name'],
+        default: 'user'
     },
     email: {
         type: String,
@@ -15,6 +16,17 @@ const UserSchema = new mongoose.Schema({
             /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/,
             'Please add a valid email',
         ],
+    },
+    auth: {
+        type: Boolean,
+        default: false
+
+    },
+    authCode: {
+        type: Number,
+        default: Math.floor(Math.random() * 90000) + 10000
+
+
     },
     role: {
         type: String,

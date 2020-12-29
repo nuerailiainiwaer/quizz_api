@@ -2,13 +2,18 @@ const express = require('express')
 
 const { getUsers, getUser, createUser, updateUser, deleteUser } = require('../controllers/user')
 const User = require('../models/User')
+const SavedQuestion = require('./savedQues')
+
+
 
 const router = express.Router({
     mergeParams: true
 });
+
 const advancedResults = require('../middleware/advancedResults')
 const { protect, authorize } = require('../middleware/auth')
     // any route below this will follow the rules
+router.use('/:userID/questions', SavedQuestion)
 router.use(protect)
 router.use(authorize('admin'))
 

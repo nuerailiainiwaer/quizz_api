@@ -124,6 +124,53 @@ exports.deleteQuestion = asyncHandler(async(req, res, next) => {
 
 })
 
+//@des save a question
+//@route post/api/v1/questions/save/:id
+//@access private
+
+exports.saveQuestion = asyncHandler(async(req, res, next) => {
+        // const question = await Question.findById(req.params.id)
+        // var id = req.user._id;
+        // var bolen = question.saved.includes(id)
+        // if (bolen) {
+        //     return next(new ErrorResponse(`The questions is already saved`), 404)
+        // }
+
+
+        const fieldsToUpdate = {
+
+            saved: req.body.saved
+        };
+        const questionme = await Question.findByIdAndUpdate(req.params.id, fieldsToUpdate, {
+            new: true,
+            runValidators: true,
+        });
+        console.log(questionme)
+
+        res.status(200).json({
+            success: true,
+            data: questionme
+        })
+
+    })
+    //@des get a saved question
+    //@route get /api/v1/questions/get/:id
+    //@access private
+
+exports.getSavedQuestion = asyncHandler(async(req, res, next) => {
+    const question = await Question.findById(req.params.id)
+    var id = req.user._id;
+    var bolen = question.saved.includes(id)
+
+    res.status(200).json({
+        success: true,
+        data: bolen
+
+    })
+
+
+})
+
 
 //@des upload photo for questions
 //@route put /api/v1/questions/:id/photo

@@ -25,6 +25,14 @@ const QuestionSchema = new monngoose.Schema({
         required: [true, 'Please add answer to question!'],
         enum: ["A", "B", "C", "D"]
     },
+    saved: {
+        type: Array
+    },
+    ranking: {
+        type: Number,
+        default: 1
+
+    },
     photo: {
         type: String,
         default: 'no-photo.jpg'
@@ -34,6 +42,7 @@ const QuestionSchema = new monngoose.Schema({
         default: Date.now
 
     },
+
     type: {
         type: monngoose.Schema.ObjectId,
         ref: 'Types',
