@@ -46,30 +46,7 @@
         "type": "5d713995b721c3bb38c1f5d3"
 
     },
-    {
-        "_id": "5d713995b721c3bb38c1f5d9",
-        "ques": " Which one of these characters is not friends with Harry Potter?",
-        "A": "Ron Weasley",
-        "B": "Neville Longbottom",
-        "C": "Draco Malfoy",
-        "D": "Hermione Granger",
-        "anS": "C",
-        "photo": "nurili",
-        "type": "5d713995b721c3bb38c1f5d2"
 
-    },
-    {
-        "_id": "5d713995b721c3bb38c1f510",
-        "ques": "What is the color of Donald Duck’s bowtie?",
-        "A": "Red",
-        "B": "Yellow",
-        "C": "Blue",
-        "D": "White",
-        "anS": "A",
-        "photo": "nurili",
-        "type": "5d713995b721c3bb38c1f5d2"
-
-    },
     {
         "_id": "5d713995b721c3bb38c1f511",
         "ques": "What is the color of Donald Duck’s bowtie?",
@@ -189,7 +166,7 @@
         "D": "Tina",
         "anS": "C",
         "photo": "nurili",
-        "type": "5d713995b721c3bb38c1f5d4"
+        "type": "5d713995b721c3bb38c1f5d2"
 
     },
     {

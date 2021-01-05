@@ -8,6 +8,11 @@ const ScoreScheme = new mongoose.Schema({
         type: Date,
         default: Date.now
     },
+    status: {
+        type: String,
+        enum: ['pass', 'fail'],
+
+    },
     user: {
         type: mongoose.Schema.ObjectId,
         ref: 'User',

@@ -1,27 +1,34 @@
 [{
         "Score": 40,
+        "status": "pass",
         "user": "5d7a514b5d2c12c7449be042"
     }, {
         "Score": 45,
+        "status": "pass",
         "user": "5d7a514b5d2c12c7449be043"
     }, {
         "Score": 46,
+        "status": "fail",
         "user": "5d7a514b5d2c12c7449be044"
     },
     {
         "Score": 47,
+        "status": "pass",
         "user": "5c8a1d5b0190b214360dc039"
     },
     {
         "Score": 48,
+        "status": "pass",
         "user": "5c8a1d5b0190b214360dc039"
     },
     {
         "Score": 45,
+        "status": "fail",
         "user": "5c8a1d5b0190b214360dc039"
     },
     {
         "Score": 44,
+        "status": "pass",
         "user": "5c8a1d5b0190b214360dc039"
     }
 

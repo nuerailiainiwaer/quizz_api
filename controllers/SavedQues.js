@@ -42,17 +42,32 @@ exports.getSavedQuestions = asyncHandler(async(req, res, next) => {
 })
 
 // @des create savedQuesation
-// @route POST /api/v1/questions/:quesID/saved
+// @route POST /api/v1/questions
 // @access private
 exports.savedQuestions = asyncHandler(async(req, res, next) => {
-    req.body.userID = req.user._id;
-    req.body.quesID = req.params.quesID;
+    // req.body.userID = req.user._id;
+    // req.body.quesID = req.params.quesID;
 
     const savedQues = await SavedQues.create(req.body)
     console.log(savedQues)
     res.status(200).json({
-        success: true,
+        success: 'meme',
         data: savedQues
+    })
+})
+
+// @des get getTrueOrFlawseSavedQuestions
+// @route get /api/v1/questions/:quesID/saved
+// @access private
+exports.getTrueOrFlawseSavedQuestions = asyncHandler(async(req, res, next) => {
+    const savedQuesions = await SavedQues.find({
+        userID: req.body.userID,
+        quesID: req.body.quesID
+    })
+
+    res.status(200).json({
+        success: true,
+        data: savedQuesions
     })
 })
 
@@ -61,16 +76,12 @@ exports.savedQuestions = asyncHandler(async(req, res, next) => {
 // @route delete /api/v1/savedquestion/:id
 // @access private
 exports.deleteSavedQuestions = asyncHandler(async(req, res, next) => {
-    const savedQues = await SavedQues.findById(req.params.id);
-    if (!savedQues) {
-        return next(new ErrorResponse(`Saved Question is not found with id of ${req.params.id} `, 404));
-    }
-    if (JSON.stringify(savedQues.userID) !== JSON.stringify(req.user._id)) {
-        return next(new ErrorResponse(` ${req.user._id} is not saver of the question `, 404));
 
-    }
-    savedQues.remove();
-    res.status(200).json({ success: true, data: {} })
+
+    const types = await SavedQues.findById(req.params.id);
+
+    types.remove();
+    res.status(200).json({ success: true })
 
 });
 

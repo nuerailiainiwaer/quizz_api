@@ -29,7 +29,7 @@ const questions = JSON.parse(fs.readFileSync(`${__dirname}/data/questions.json`,
 const users = JSON.parse(fs.readFileSync(`${__dirname}/data/user.json`, 'utf-8'));
 const feedback = JSON.parse(fs.readFileSync(`${__dirname}/data/feedback.json`, 'utf-8'));
 const score = JSON.parse(fs.readFileSync(`${__dirname}/data/score.json`, 'utf-8'));
-const savedQues = JSON.parse(fs.readFileSync(`${__dirname}/data/savedQuestion.json`, 'utf-8'));
+// const savedQues = JSON.parse(fs.readFileSync(`${__dirname}/data/savedQuestion.json`, 'utf-8'));
 
 //Import into DB
 const importDate = async() => {
@@ -39,7 +39,7 @@ const importDate = async() => {
         await User.create(users);
         await Feedback.create(feedback);
         await Score.create(score)
-        await SavedQues.create(savedQues)
+            // await SavedQues.create(savedQues)
         console.log('Data Imported...'.green.inverse);
         process.exit()
     } catch (err) {

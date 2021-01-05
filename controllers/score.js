@@ -70,12 +70,14 @@ exports.getScores = asyncHandler(async(req, res, next) => {
 //@access private
 
 exports.createScore = asyncHandler(async(req, res, next) => {
-    console.log(req.user)
-    req.body.user = req.user._id;
-    const user = await User.findById(req.params.id)
-    if (!user) {
-        return next(new ErrorResponse(`No user with the id of ${req.params.id}`), 404)
-    }
+    // console.log(req.user)
+    // req.body.user = req.user._id;
+    req.body.user = req.params.id;
+    // const user = await User.findById(req.params.id)
+    // if (!user) {
+    //     return next(new ErrorResponse(`No user with the id of ${req.params.id}`), 404)
+    // }
+    console.log('meme')
     const userCreate = await Score.create(req.body)
     res.status(200).json({
         success: true,
